@@ -6,12 +6,15 @@ source "$scriptDir"/config
 cd "$scriptDir"/.. || exitGracefully
 
 # Argument handling
-while getopts "hs" opt; do
+while getopts "ghs" opt; do
 	case "$opt" in
+	  g) gcc=1
+		;;
 	  s) skip=1
 		;;
 	  h|*) # Help
 		echo "-s for skipping defconfig copying"
+		echo "-h for GCC compliation"
 		exit 0
 		;;
 	esac
@@ -29,8 +32,12 @@ exitGracefully () {
 }
 # Generate defconfig
 if [ ! $skip ]; then
-	make CC=clang LLVM=1 "$DEFCONFIG" || exitGracefully
+	make "$DEFCONFIG" || exitGracefully
 fi
 
 # Build the kernel!
-make CC=clang LLVM=1 "$@" || exitGracefully
+if [ ! $gcc ]; then
+	make CC=clang LLVM=1 "$@" || exitGracefully
+else
+	make "$@" || exitGracefully
+fi
