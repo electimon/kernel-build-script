@@ -13,6 +13,5 @@ ARCH=arm64 \
 CLANG_TRIPLE=aarch64-linux-gnu- \
 CROSS_COMPILE=aarch64-linux-android- \
 DEFCONFIG=example_defconfig \
-DEVICE=example \
 MAKEFLAGS="O=out -j$(nproc --all)" \
 PATH="$PWD/build/build-tools/clang-r383902/bin:$PWD/build/build-tools/aarch64-linux-android-4.9/bin:$PATH"
