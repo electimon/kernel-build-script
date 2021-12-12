@@ -37,7 +37,7 @@ fi
 
 # Build the kernel!
 if [ ! $gcc ]; then
-	make CC=clang LLVM=1 "$@" || exitGracefully
+	make CC=clang "$@" || exitGracefully
 else
 	make "$@" || exitGracefully
 fi
