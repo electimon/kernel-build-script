@@ -13,8 +13,9 @@ while getopts "ghs" opt; do
 	  s) skip=1
 		;;
 	  h|*) # Help
+		echo "-g for GCC compliation"
 		echo "-s for skipping defconfig copying"
-		echo "-h for GCC compliation"
+		echo "-h for help"
 		exit 0
 		;;
 	esac
