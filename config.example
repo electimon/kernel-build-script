@@ -5,6 +5,8 @@ function loadVariables {
 	do
 		export "$var"
 	done
+	export DEVICE=$(basename "${DEFCONFIG}" | sed 's/_defconfig//g')
+	export GEN_OUT="$PWD/android_device_$OEM_$DEVICE-kernel"
 }
 
 # Variables
@@ -12,6 +14,7 @@ loadVariables \
 ARCH=arm64 \
 CLANG_TRIPLE=aarch64-linux-gnu- \
 CROSS_COMPILE=aarch64-linux-android- \
-DEFCONFIG=example_defconfig \
+DEFCONFIG=EXAMPLE_defconfig \
+OEM=EXAMPLE \
 MAKEFLAGS="O=out -j$(nproc --all) LLVM=1" \
 PATH="$PWD/build/build-tools/clang-r383902/bin:$PWD/build/build-tools/aarch64-linux-android-4.9/bin:$PWD/build/build-tools:$PATH"
