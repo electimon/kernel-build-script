@@ -59,7 +59,10 @@ if [ $gen ]; then
         cp out/arch/arm64/boot/dts/*/*.dtb "$GEN_OUT/dtbs/"
     fi
     find out -name "*.ko" -exec cp "{}" "$GEN_OUT/modules/" \;
-
+    if [ -f "$GEN_OUT/modules/wlan.ko" ]; then
+        mv "$GEN_OUT/modules/wlan.ko" "$GEN_OUT/modules/qca_cld3_wlan.ko"
+    fi
+    llvm-strip --strip-debug "$GEN_OUT/modules/qca_cld3_wlan.ko"
     if [ -f out/arch/arm64/boot/Image.gz-dtb ]; then
         cp out/arch/arm64/boot/Image.gz-dtb "$GEN_OUT/"
     elif [ -f out/arch/arm64/boot/Image.gz ]; then
