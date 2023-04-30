@@ -21,7 +21,7 @@ function exitGracefully {
 source "$scriptDir"/config
 # Export some more variables
 export DEVICE=$(basename "${DEFCONFIG}" | sed 's/_defconfig//g')
-export GEN_OUT="$PWD/android_device_$OEM_$DEVICE-kernel"
+export GEN_OUT="android_device_${OEM}_${DEVICE}-kernel"
 
 # Enter the kernel directory
 cd "$scriptDir"/.. || exitGracefully
