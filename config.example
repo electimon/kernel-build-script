@@ -3,6 +3,7 @@ loadVariables \
 ARCH=arm64 \
 CLANG_TRIPLE=aarch64-linux-gnu- \
 CROSS_COMPILE=aarch64-linux-android- \
-DEFCONFIG=example_defconfig \
+DEFCONFIG=EXAMPLE_defconfig \
+OEM=EXAMPLE \
 MAKEFLAGS="O=out -j$(nproc --all) LLVM=1" \
 PATH="$scriptDir/build-tools/clang-r383902/bin:$scriptDir/build-tools/aarch64-linux-android-4.9/bin:$scriptDir/build-tools:$PATH"
