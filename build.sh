@@ -47,6 +47,7 @@ shift $((OPTIND-1))
 # want fresh modules for gen'd folder
 if [ $gen ]; then
     find out -name "*.ko" -exec rm -rf {} +
+    rm -rf $GEN_OUT
 fi
 
 # Generate defconfig if skip is not enabled
