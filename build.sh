@@ -29,6 +29,7 @@ exitGracefully () {
 # Clean modules if gen is enabled
 if [ $gen ]; then
     find out -name "*.ko" -exec rm -rf {} +
+    rm -rf $GEN_OUT
 fi
 
 # Generate defconfig if skip is not enabled
