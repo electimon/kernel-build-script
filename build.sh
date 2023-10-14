@@ -1,6 +1,15 @@
 #!/bin/bash
 # Reset to script path and load the configuration file
 scriptDir=$(dirname "$0")
+
+# Load all variables and keep them in a readable format.
+function loadVariables {
+	for var in "$@"
+	do
+		export "$var"
+	done
+}
+
 source "$scriptDir"/config
 # Enter the kernel
 cd "$scriptDir"/.. || exitGracefully
