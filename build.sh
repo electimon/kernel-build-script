@@ -1,7 +1,9 @@
 #!/bin/bash
-# Reset to script path and load the configuration file
-scriptDir=$(dirname "$0")
 
+# Store script path
+scriptDir=$(realpath $(dirname "$0"))
+
+# Setup Functions
 # Load all variables and keep them in a readable format.
 function loadVariables {
 	for var in "$@"
@@ -9,9 +11,16 @@ function loadVariables {
 		export "$var"
 	done
 }
+# This exits the script.
+function exitGracefully {
+	echo "Well well well, looks like something went wrong..."
+	exit 0
+}
 
+# Load configuration file
 source "$scriptDir"/config
-# Enter the kernel
+
+# Enter the kernel directory
 cd "$scriptDir"/.. || exitGracefully
 
 # Argument handling
@@ -34,12 +43,6 @@ shift $((OPTIND-1))
 
 [ "${1:-}" = "--" ] && shift
 
-# Setup Functions
-# This exits the script.
-exitGracefully () {
-	echo "Well well well, looks like something went wrong..."
-	exit 0
-}
 # Generate defconfig
 if [ ! $skip ]; then
 	make "$DEFCONFIG" || exitGracefully
