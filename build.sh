@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Store script path
-scriptDir=$(realpath $(dirname "$0"))
+scriptDir=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 # Setup Functions
 # Load all variables and keep them in a readable format.
@@ -42,7 +42,6 @@ done
 shift $((OPTIND-1))
 
 [ "${1:-}" = "--" ] && shift
-
 # Generate defconfig
 if [ ! $skip ]; then
 	make "$DEFCONFIG" || exitGracefully
