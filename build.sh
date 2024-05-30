@@ -21,7 +21,7 @@ function exitGracefully {
 source "$scriptDir"/config
 
 # Enter the kernel directory
-cd "$scriptDir"/.. || exitGracefully
+cd "$PWD" || exitGracefully
 
 # Argument handling
 while getopts "ghs" opt; do
